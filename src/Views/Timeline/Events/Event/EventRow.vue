@@ -287,14 +287,12 @@ const percent = computed(() => {
 .eventDate {
   color: #93979a;
   font-family: system-ui;
-  font-size: 80%;
   margin: 0px 0px 0px 8px;
   white-space: nowrap;
 }
 
 .eventTitle {
   font-family: system-ui;
-  font-size: 80%;
   white-space: nowrap;
   font-weight: 600;
 
