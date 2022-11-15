@@ -25,7 +25,7 @@ import type {
   EventPath,
   EventPaths,
 } from "@/Views/ViewOrchestrator/useStateSerializer";
-import { vscodeApi } from "@/VSCode/composables/useVsCode";
+import { useVsCode } from "@/VSCode/composables/useVsCode";
 
 export const useEditorOrchestratorStore = defineStore(
   "editorOrchestrator",
@@ -33,6 +33,7 @@ export const useEditorOrchestratorStore = defineStore(
     const markwhenStore = useMarkwhenStore();
     const pageStore = usePageStore();
     const eventMapStore = useEventMapStore();
+    const { updateText } = useVsCode()
 
     const editable = ref(false);
     const showTagFilterButtons = ref(true);
@@ -41,11 +42,7 @@ export const useEditorOrchestratorStore = defineStore(
 
     const setText = (text: string) => {
       markwhenStore.setRawTimelineString(text);
-      console.log("posting new text");
-      vscodeApi.postMessage({
-        type: "update",
-        text,
-      });
+      updateText(text)
     };
 
     const addPage = () => {
